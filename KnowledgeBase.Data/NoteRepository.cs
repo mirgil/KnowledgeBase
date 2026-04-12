@@ -17,8 +17,7 @@ namespace KnowledgeBase.Data
             var results = new List<NoteEntity>();
             using (var conn = new SqlConnection(_connectionString))
             {
-                // VULNERABLE: SQL Injection via string concatenation
-                string sql = "SELECT Id, Header, Body FROM RepositoryNotes WHERE Header LIKE '%" + query + "%'";
+                string sql = string.Format(SqlQueryTemplates.SearchNotes, query);
                 
                 var cmd = new SqlCommand(sql, conn);
                 conn.Open();
@@ -41,8 +40,7 @@ namespace KnowledgeBase.Data
         {
             using (var conn = new SqlConnection(_connectionString))
             {
-                // VULNERABLE: SQL Injection via interpolation
-                string sql = $"INSERT INTO RepositoryNotes (Header, Body) VALUES ('{header}', '{body}')";
+                string sql = string.Format(SqlQueryTemplates.SaveNote, header, body);
                 var cmd = new SqlCommand(sql, conn);
                 conn.Open();
                 cmd.ExecuteNonQuery();
