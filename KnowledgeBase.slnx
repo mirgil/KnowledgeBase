@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="KnowledgeBase.Data/KnowledgeBase.Data.csproj" />
+  <Project Path="KnowledgeBase.Web/KnowledgeBase.Web.csproj" />
+</Solution>

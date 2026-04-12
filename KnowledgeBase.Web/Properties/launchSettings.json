@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "KnowledgeBase.Web": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:33297;http://localhost:33298"
+    }
+  }
+}
