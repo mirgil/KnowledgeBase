@@ -8,9 +8,9 @@ namespace KnowledgeBase.Data
     public static class SqlQueryTemplates
     {
         //A query template for searching notes by header. 
-        public const string SearchNotes = "SELECT Id, Header, Body FROM RepositoryNotes WHERE Header LIKE @query";
+        public const string SearchNotes = "SELECT Id, Header, Body FROM RepositoryNotes WHERE Header LIKE @SearchPattern";
 
         //A query template for saving a new note.   
-        public const string SaveNote = "INSERT INTO RepositoryNotes (Header, Body) VALUES (@header, @body)";
+        public const string SaveNote = "INSERT INTO RepositoryNotes (Header, Body) VALUES (@Header, @Body)";
     }
 }

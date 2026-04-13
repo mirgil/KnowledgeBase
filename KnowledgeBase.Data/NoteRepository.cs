@@ -17,9 +17,9 @@ namespace KnowledgeBase.Data
             var results = new List<NoteEntity>();
             using (var conn = new SqlConnection(_connectionString))
             {
-                string sql = SqlQueryTemplates.SearchNotes;
-                var cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@query", $"%{query}%");
+                var cmd = new SqlCommand(SqlQueryTemplates.SearchNotes, conn);
+                var normalizedQuery = query ?? string.Empty;
+                cmd.Parameters.AddWithValue("@SearchPattern", $"%{normalizedQuery}%");
                 conn.Open();
                 using (var rdr = cmd.ExecuteReader())
                 {
@@ -40,10 +40,9 @@ namespace KnowledgeBase.Data
         {
             using (var conn = new SqlConnection(_connectionString))
             {
-                string sql = SqlQueryTemplates.SaveNote;
-                var cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@header", header);
-                cmd.Parameters.AddWithValue("@body", body);
+                var cmd = new SqlCommand(SqlQueryTemplates.SaveNote, conn);
+                cmd.Parameters.AddWithValue("@Header", header ?? string.Empty);
+                cmd.Parameters.AddWithValue("@Body", body ?? string.Empty);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
